@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Nama Barang -->
+    <TextView
+        android:id="@+id/nama_barang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Barang"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Stok Barang -->
+    <TextView
+        android:id="@+id/stok_barang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stok Barang"
+        android:textSize="18sp" />
+
+    <!-- Jenis Transaksi -->
+    <Spinner
+        android:id="@+id/jenisTransaksi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Jumlah -->
+    <EditText
+        android:id="@+id/jumlah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Jumlah"
+        android:inputType="number" />
+    <Button
+        android:id="@+id/btnPilihTanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih Tanggal" />
+
+    <TextView
+        android:id="@+id/tanggalTerpilih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal: "
+        android:textSize="16sp" />
+
+    <!-- Simpan -->
+    <Button
+        android:id="@+id/btnSimpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simpan Riwayat" />
+</LinearLayout>

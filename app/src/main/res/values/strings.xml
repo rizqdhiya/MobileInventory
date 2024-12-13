@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MobileInventory</string>
+    <string name="tbhbrg">Tambah Barang</string>
+    <string name="nama_barang">Nama Barang</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="kategori">Kategori</string>
+    <string name="harga">Harga</string>
+    <string name="foto_barang">foto_brg</string>
+    <string-array name="jenis_transaksi_options">
+        <item>masuk</item>
+        <item>keluar</item>
+    </string-array>
+</resources>

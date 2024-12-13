@@ -1,0 +1,58 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".TambahBarangActivity">
+
+    <EditText
+        android:id="@+id/inputNamaBarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Barang"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputDeskripsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deskripsi"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputKategori"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kategori"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputHarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Harga"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btnPilihFoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih Foto" />
+
+    <ImageView
+        android:id="@+id/previewFoto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:background="#3000" />
+
+    <Button
+        android:id="@+id/btnTambahBarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tambah Barang" />
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <Button
+            android:id="@+id/btnPilihFoto"
+            android:text="Pilih Foto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/previewFoto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp" />
+
+        <!-- Input Nama Barang -->
+        <EditText
+            android:id="@+id/inputNamaBarang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Barang"
+            android:inputType="text" />
+
+        <!-- Input Deskripsi -->
+        <EditText
+            android:id="@+id/inputDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Deskripsi Barang"
+            android:inputType="textMultiLine" />
+
+        <!-- Input Kategori -->
+        <EditText
+            android:id="@+id/inputKategori"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Kategori Barang"
+            android:inputType="text" />
+
+        <!-- Input Harga -->
+        <EditText
+            android:id="@+id/inputHarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Harga Barang"
+            android:inputType="numberDecimal" />
+
+        <!-- Input Stok -->
+        <EditText
+            android:id="@+id/inputStok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stok Barang"
+            android:inputType="number" />
+
+        <!-- Tombol Simpan Barang -->
+        <Button
+            android:id="@+id/btnSimpanBarang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Simpan Barang" />
+
+    </LinearLayout>
+</ScrollView>
