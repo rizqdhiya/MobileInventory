@@ -7,7 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.launch
+import xriz.my.id.mobileinventory.db.AppDatabase
+import xriz.my.id.mobileinventory.db.Riwayat
 
 class DetailBarangActivity : AppCompatActivity() {
 
@@ -25,7 +31,21 @@ class DetailBarangActivity : AppCompatActivity() {
         val stok = intent.getIntExtra("BARANG_STOK", 0)
         val barangId = intent.getIntExtra("BARANG_ID", -1)
         val fotoPath = intent.getStringExtra("BARANG_FOTO") ?: ""
+        val recyclerView = findViewById<RecyclerView>(R.id.rvRiwayat)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        lifecycleScope.launch {
+            val riwayatDao = AppDatabase.getDatabase(this@DetailBarangActivity).riwayatDao()
+            val riwayatList: List<Riwayat> = riwayatDao.getAllRiwayat()
+                .filter { it.barangId == barangId } // Filter hanya untuk barang ini
 
+            // Set adapter jika data tersedia
+            if (riwayatList.isNotEmpty()) {
+                val adapter = RiwayatAdapter(riwayatList)
+                recyclerView.adapter = adapter
+            } else {
+                Toast.makeText(this@DetailBarangActivity, "Belum ada riwayat transaksi", Toast.LENGTH_SHORT).show()
+            }
+        }
         // Bind data ke layout
         findViewById<TextView>(R.id.nama_barang).text = "Nama Barang: $nama"
         findViewById<TextView>(R.id.deskripsi_barang).text = "Deskripsi: $deskripsi"

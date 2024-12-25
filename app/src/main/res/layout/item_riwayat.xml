@@ -1,24 +1,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:orientation="horizontal"
+    android:padding="8dp">
 
     <TextView
-        android:id="@+id/jenis_transaksi"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvJenisTransaksi"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Jenis Transaksi" />
+        android:layout_weight="1"
+        android:text="Jenis Transaksi"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/jumlah"
+        android:id="@+id/tvJumlah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jumlah" />
 
     <TextView
-        android:id="@+id/tanggal"
+        android:id="@+id/tvTanggal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="Tanggal" />
 </LinearLayout>

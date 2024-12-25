@@ -1,3 +1,4 @@
+
 package xriz.my.id.mobileinventory
 
 import android.content.Intent
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import xriz.my.id.mobileinventory.adapter.BarangAdapter
 import xriz.my.id.mobileinventory.db.AppDatabase
@@ -23,11 +25,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var database: AppDatabase
     private lateinit var barangAdapter: BarangAdapter
     private lateinit var riwayatDao: RiwayatDao
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         checkAndRequestPermissions()
+        auth = FirebaseAuth.getInstance()
 
         // Initialize database and DAO
         database = AppDatabase.getDatabase(this)
@@ -72,7 +76,17 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnTambahBarang).setOnClickListener {
             startActivity(Intent(this, TambahBarangActivity::class.java))
         }
+        // Tambahkan fungsi logout
+        findViewById<Button>(R.id.btnLogout).setOnClickListener {
+            auth.signOut()
+            Toast.makeText(this, "Berhasil Logout", Toast.LENGTH_SHORT).show()
 
+            // Kembali ke LoginActivity
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
         // Button to delete selected barang
         findViewById<Button>(R.id.btnHapusBarang).setOnClickListener {
             val barangToDelete = barangAdapter.getSelectedBarang()
@@ -110,4 +124,5 @@ class MainActivity : AppCompatActivity() {
             riwayatDao.insertRiwayat(riwayat)
         }
     }
+
 }

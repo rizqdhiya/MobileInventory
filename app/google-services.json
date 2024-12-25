@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "446947521038",
+    "project_id": "mobileinven",
+    "storage_bucket": "mobileinven.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446947521038:android:b7aae6b640c4fc2293025f",
+        "android_client_info": {
+          "package_name": "xriz.my.id.mobileinventory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDium8dOc9gh8WkLFVOiNwzI_QDSYR_ZgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -20,7 +20,17 @@
         android:layout_marginStart="16dp"
         android:clipToPadding="false"
         android:paddingBottom="8dp" />
-
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_below="@id/btnTambahBarang"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
     <!-- Button for Adding Barang -->
     <Button
         android:id="@+id/btnTambahBarang"
@@ -31,7 +41,9 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        />
 
     <Button
         android:id="@+id/btnHapusBarang"
@@ -42,5 +54,6 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnTambahBarang" />
+        app:layout_constraintBottom_toTopOf="@+id/btnTambahBarang"
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>
