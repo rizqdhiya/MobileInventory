@@ -1,4 +1,4 @@
-package xriz.my.id.mobileinventory.db
+/*package xriz.my.id.mobileinventory.db
 
 import android.content.Context
 import androidx.room.Database
@@ -27,3 +27,4 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+*/

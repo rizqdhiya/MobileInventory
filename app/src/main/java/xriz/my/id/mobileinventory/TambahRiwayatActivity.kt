@@ -5,30 +5,39 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.*
-import xriz.my.id.mobileinventory.db.AppDatabase
-import xriz.my.id.mobileinventory.db.Riwayat
 
 class TambahRiwayatActivity : AppCompatActivity() {
-    private lateinit var database: AppDatabase
+
+    private lateinit var riwayatRef: DatabaseReference
+    private lateinit var barangRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tambah_riwayat)
 
-        database = AppDatabase.getDatabase(this)
-
         // Ambil data barang dari Intent
         val namaBarang = intent.getStringExtra("BARANG_NAMA") ?: ""
         val stokBarang = intent.getIntExtra("BARANG_STOK", 0)
-        val barangId = intent.getIntExtra("BARANG_ID", -1)
+        val barangId = intent.getStringExtra("BARANG_ID") ?: ""
+        if (barangId.isEmpty()) {
+            Toast.makeText(this, "Barang ID tidak valid", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
 
         // Bind data ke layout
         findViewById<TextView>(R.id.nama_barang).text = "Nama Barang: $namaBarang"
         findViewById<TextView>(R.id.stok_barang).text = "Stok: $stokBarang"
+
+        // Firebase references
+        val database = FirebaseDatabase.getInstance()
+        riwayatRef = database.getReference("riwayat")
+        barangRef = database.getReference("barang")
 
         val jenisTransaksi = findViewById<Spinner>(R.id.jenisTransaksi)
         val jumlah = findViewById<EditText>(R.id.jumlah)
@@ -37,7 +46,7 @@ class TambahRiwayatActivity : AppCompatActivity() {
         val tanggalText = findViewById<TextView>(R.id.tanggalTerpilih)
 
         // Pilihan untuk transaksi: masuk/keluar
-        val transaksiOptions = arrayOf("masuk", "keluar")
+        val transaksiOptions = arrayOf("Tambah Stok", "Kurangi Stok")
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, transaksiOptions)
         jenisTransaksi.adapter = spinnerAdapter
 
@@ -54,62 +63,54 @@ class TambahRiwayatActivity : AppCompatActivity() {
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
+        // Tombol simpan transaksi
         btnSimpan.setOnClickListener {
             val transaksi = jenisTransaksi.selectedItem.toString()
             val jumlahTransaksi = jumlah.text.toString().toIntOrNull()
 
             if (transaksi.isNotEmpty() && jumlahTransaksi != null && jumlahTransaksi > 0) {
-                val riwayat = Riwayat(
-                    barangId = barangId,
-                    jenisTransaksi = transaksi,
-                    jumlah = jumlahTransaksi,
-                    tanggal = selectedDate
+                // Validasi stok barang untuk transaksi "Kurangi Stok"
+                if (transaksi == "Kurangi Stok" && jumlahTransaksi > stokBarang) {
+                    Toast.makeText(this, "Stok tidak cukup untuk mengurangi stok", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                // Simpan data riwayat transaksi ke Firebase
+                val riwayatId = riwayatRef.push().key
+                val riwayat = mapOf(
+                    "id" to riwayatId,
+                    "barangId" to barangId,
+                    "jenisTransaksi" to transaksi,
+                    "jumlah" to jumlahTransaksi,
+                    "tanggal" to selectedDate
                 )
+                riwayatId?.let {
+                    riwayatRef.child(it).setValue(riwayat)
+                }
 
-                lifecycleScope.launch {
-                    try {
-                        // Simpan riwayat transaksi ke database
-                        database.riwayatDao().insertRiwayat(riwayat)
+                // Update stok barang di Firebase
+                val updatedStok = if (transaksi == "Tambah Stok") {
+                    stokBarang + jumlahTransaksi
+                } else {
+                    stokBarang - jumlahTransaksi
+                }
 
-                        // Ambil data barang dari database
-                        val barang = database.barangDao().getBarangById(barangId)
-                        if (barang != null) {
-                            val updatedStok = if (transaksi == "masuk") {
-                                // Transaksi masuk: stok bertambah
-                                barang.stok + jumlahTransaksi
-                            } else {
-                                // Transaksi keluar: stok berkurang (periksa apakah stok cukup)
-                                if (barang.stok >= jumlahTransaksi) {
-                                    barang.stok - jumlahTransaksi
-                                } else {
-                                    // Jika stok tidak cukup, tampilkan pesan kesalahan
-                                    runOnUiThread {
-                                        Toast.makeText(this@TambahRiwayatActivity, "Stok tidak cukup", Toast.LENGTH_SHORT).show()
-                                    }
-                                    return@launch
-                                }
-                            }
-
-                            // Update stok barang di database
-                            barang.stok = updatedStok
-                            database.barangDao().updateBarang(barang)
-
+                // Pastikan barangId benar dan update stok
+                barangRef.child(barangId).child("stok").setValue(updatedStok)
+                    .addOnCompleteListener { updateTask ->
+                        if (updateTask.isSuccessful) {
                             // Kirimkan hasil pembaruan stok kembali ke DetailBarangActivity
                             val resultIntent = Intent().apply {
                                 putExtra("UPDATED_STOK", updatedStok)
                             }
                             setResult(RESULT_OK, resultIntent)
                             finish()
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                        runOnUiThread {
-                            Toast.makeText(this@TambahRiwayatActivity, "Terjadi kesalahan saat menyimpan riwayat", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Gagal memperbarui stok barang", Toast.LENGTH_SHORT).show()
                         }
                     }
-                }
             } else {
-                Toast.makeText(this@TambahRiwayatActivity, "Pastikan semua field diisi dengan benar", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Pastikan semua field diisi dengan benar", Toast.LENGTH_SHORT).show()
             }
         }
     }

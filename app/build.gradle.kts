@@ -64,9 +64,14 @@ dependencies {
     implementation(libs.glide)
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation ("com.google.firebase:firebase-auth-ktx:22.3.1")
+    implementation ("com.google.firebase:firebase-firestore")
+    implementation ("com.google.firebase:firebase-storage:21.0.1")
+    implementation("com.google.firebase:firebase-database:21.0.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
 
-
-
+    implementation ("org.osmdroid:osmdroid-android:6.1.20")
+    implementation ("com.github.MKergall:osmbonuspack:6.9.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

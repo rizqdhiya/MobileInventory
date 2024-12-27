@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TambahSupplierActivity">
+
+    <!-- Nama Supplier -->
+    <TextView
+        android:id="@+id/text_nama_supplier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Supplier"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/nama_supplier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/nama_supplier"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nama Supplier"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@+id/text_nama_supplier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="16dp"/>
+
+    <!-- Alamat Supplier -->
+    <TextView
+        android:id="@+id/text_alamat_supplier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alamat Supplier"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/alamat_supplier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nama_supplier"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/alamat_supplier"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Alamat Supplier"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@+id/text_alamat_supplier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="16dp"/>
+
+    <!-- Kontak Supplier -->
+    <TextView
+        android:id="@+id/text_kontak_supplier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kontak Supplier"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/kontak_supplier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alamat_supplier"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/kontak_supplier"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Kontak Supplier"
+        android:inputType="phone"
+        app:layout_constraintTop_toBottomOf="@+id/text_kontak_supplier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="16dp"/>
+
+    <!-- Tombol Ambil Lokasi -->
+    <Button
+        android:id="@+id/btn_ambil_lokasi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ambil Lokasi"
+        app:layout_constraintTop_toBottomOf="@+id/kontak_supplier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="16dp"/>
+
+    <!-- Tombol Tambah Supplier -->
+    <Button
+        android:id="@+id/btn_tambah_supplier"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tambah Supplier"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ambil_lokasi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -29,6 +31,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileInventory"
         tools:targetApi="31">
+        <activity
+            android:name=".EditSupplierActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LokasiPickerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".DetailSupplierActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DaftarSupplierActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TambahSupplierActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

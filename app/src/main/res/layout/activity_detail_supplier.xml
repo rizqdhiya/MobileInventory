@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".DetailSupplierActivity">
+
+    <!-- Header dengan nama supplier -->
+    <TextView
+        android:id="@+id/nama_supplier_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Nama Supplier"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- CardView untuk detail informasi -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_supplier_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/nama_supplier_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Alamat Supplier -->
+            <TextView
+                android:id="@+id/alamat_supplier_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alamat: [Alamat Supplier]"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="8dp"
+                android:paddingBottom="8dp" />
+
+            <!-- Kontak Supplier -->
+            <TextView
+                android:id="@+id/kontak_supplier_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kontak: [Kontak Supplier]"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="8dp"
+                android:paddingBottom="8dp" />
+
+            <!-- Lokasi Supplier -->
+            <TextView
+                android:id="@+id/lokasi_supplier_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lokasi: Lat: [0.0], Long: [0.0]"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:drawableStart="@drawable/ic_map"
+                android:drawablePadding="8dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Tombol untuk membuka lokasi di Google Maps -->
+    <Button
+        android:id="@+id/btn_open_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+
+        android:padding="12dp"
+        android:text="Lihat Lokasi di Google Maps"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/card_supplier_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

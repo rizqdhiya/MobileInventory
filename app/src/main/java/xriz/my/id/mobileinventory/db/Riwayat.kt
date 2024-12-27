@@ -1,4 +1,4 @@
-package xriz.my.id.mobileinventory.db
+/*package xriz.my.id.mobileinventory.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,3 +11,4 @@ data class Riwayat(
     val jumlah: Int,
     val tanggal: String
 )
+*/

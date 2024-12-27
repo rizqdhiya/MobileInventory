@@ -1,4 +1,4 @@
-package xriz.my.id.mobileinventory.db
+/*package xriz.my.id.mobileinventory.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -38,3 +38,4 @@ interface RiwayatDao {
     @Query("SELECT * FROM riwayat ORDER BY tanggal DESC")
     suspend fun getAllRiwayat(): List<Riwayat>
 }
+*/

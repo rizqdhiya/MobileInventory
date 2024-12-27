@@ -1,4 +1,4 @@
-package xriz.my.id.mobileinventory.db
+/*package xriz.my.id.mobileinventory.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -13,3 +13,4 @@ data class Barang(
     var stok: Int,
     var fotoPath: String
 )
+*/

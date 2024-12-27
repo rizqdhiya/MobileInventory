@@ -39,6 +39,12 @@
             android:text="Deskripsi: Deskripsi Barang"
             android:textColor="@android:color/darker_gray"
             android:paddingBottom="8dp"/>
+        <TextView
+            android:id="@+id/supplier_barang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supplier: -"
+            android:textSize="16sp"/>
 
         <!-- Product Category -->
         <TextView

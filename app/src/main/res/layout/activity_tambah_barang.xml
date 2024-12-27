@@ -35,6 +35,14 @@
         android:hint="Harga"
         android:inputType="numberDecimal" />
 
+    <!-- Spinner untuk memilih Supplier -->
+    <Spinner
+        android:id="@+id/supplierSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Pilih Supplier" />
+
     <Button
         android:id="@+id/btnPilihFoto"
         android:layout_width="match_parent"

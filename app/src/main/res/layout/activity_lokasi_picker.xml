@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- MapView yang mengisi seluruh layar -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- LinearLayout untuk pencarian dan tombol cari -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:padding="16dp">
+
+        <!-- EditText untuk mencari lokasi -->
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Cari lokasi"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Tombol Cari Lokasi -->
+        <Button
+            android:id="@+id/btn_cari_lokasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cari" />
+    </LinearLayout>
+
+    <!-- Tombol Simpan Lokasi, diletakkan di bagian bawah dan tengah -->
+    <Button
+        android:id="@+id/btn_simpan_lokasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simpan Lokasi"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+</RelativeLayout>

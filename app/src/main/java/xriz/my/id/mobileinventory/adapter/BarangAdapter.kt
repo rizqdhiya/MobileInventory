@@ -1,5 +1,6 @@
 package xriz.my.id.mobileinventory.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,11 @@ import com.bumptech.glide.Glide
 import java.text.NumberFormat
 import java.util.*
 import xriz.my.id.mobileinventory.R
-import xriz.my.id.mobileinventory.db.Barang
+import xriz.my.id.mobileinventory.model.Barang
 
 class BarangAdapter(
     private val onItemClick: (Barang) -> Unit,
-    private val onItemLongClick: (Barang) -> Unit // Long-click listener
+    private val onItemLongClick: (Barang) -> Unit
 ) : RecyclerView.Adapter<BarangAdapter.BarangViewHolder>() {
 
     private var barangList: List<Barang> = emptyList()
@@ -36,6 +37,8 @@ class BarangAdapter(
 
     override fun onBindViewHolder(holder: BarangViewHolder, position: Int) {
         val barang = barangList[position]
+        // Log untuk debugging
+        Log.d("BarangAdapter", "Binding barang ID: ${barang.barangId}")
         holder.bind(barang)
     }
 
@@ -50,13 +53,11 @@ class BarangAdapter(
         private val checkboxBarang: CheckBox = view.findViewById(R.id.checkbox_barang)
 
         fun bind(barang: Barang) {
-            // Set text values for name, category, and price
             namaBarang.text = barang.nama
             kategoriBarang.text = barang.kategori
             hargaBarang.text = formatCurrency(barang.harga)
             stockBarang.text = "Stok: ${barang.stok}"
 
-            // Load image with Glide, or set placeholder if no image
             if (!barang.fotoPath.isNullOrEmpty()) {
                 Glide.with(itemView.context)
                     .load(barang.fotoPath)
@@ -67,35 +68,23 @@ class BarangAdapter(
                 imageBarang.setImageResource(R.drawable.placeholder_image)
             }
 
-            // Set checkbox state based on selection
             checkboxBarang.isChecked = selectedItems.contains(barang)
             checkboxBarang.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    selectedItems.add(barang)
-                } else {
-                    selectedItems.remove(barang)
-                }
+                if (isChecked) selectedItems.add(barang) else selectedItems.remove(barang)
             }
 
-            // Set click listener for normal click (opens details)
             itemView.setOnClickListener { onItemClick(barang) }
-
-            // Set long-click listener (opens edit)
             itemView.setOnLongClickListener {
                 onItemLongClick(barang)
                 true
             }
         }
 
-        // Function to format price as currency
         private fun formatCurrency(price: Double?): String {
             return if (price != null) {
-                val locale = Locale("in", "ID")  // For Indonesian Rupiah
-                val format = NumberFormat.getCurrencyInstance(locale)
-                format.format(price)
-            } else {
-                "Rp 0"
-            }
+                val locale = Locale("in", "ID")
+                NumberFormat.getCurrencyInstance(locale).format(price)
+            } else "Rp 0"
         }
     }
 }

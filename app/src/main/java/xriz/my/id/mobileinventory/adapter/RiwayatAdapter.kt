@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import xriz.my.id.mobileinventory.db.Riwayat
+import xriz.my.id.mobileinventory.model.Riwayat
 
-class RiwayatAdapter(private val riwayatList: List<Riwayat>) :
-    RecyclerView.Adapter<RiwayatAdapter.RiwayatViewHolder>() {
+class RiwayatAdapter : RecyclerView.Adapter<RiwayatAdapter.RiwayatViewHolder>() {
+
+    private val riwayatList: MutableList<Riwayat> = mutableListOf()
 
     class RiwayatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val jenisTransaksi: TextView = itemView.findViewById(R.id.tvJenisTransaksi)
@@ -30,4 +31,11 @@ class RiwayatAdapter(private val riwayatList: List<Riwayat>) :
     }
 
     override fun getItemCount(): Int = riwayatList.size
+
+    // Metode untuk memperbarui data
+    fun updateData(newList: List<Riwayat>) {
+        riwayatList.clear()
+        riwayatList.addAll(newList)
+        notifyDataSetChanged()
+    }
 }
